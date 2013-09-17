@@ -1,0 +1,37 @@
+/*- CSS Prolog -*/
+html, body, p, h1, h2, h3, h4, h5, h6, ul, ol, li, img		{ margin:0; padding:0; font-family:"Arial CE", Arial, "Helvetica CE", Helvetica, sans-serif; color:#000; border:none; }
+
+/*- Definice zakladniho font-size, tak aby to spocitala i Opera -*/
+html														{ font-size:106.5%; background:#FFF; }
+body														{ font-size:76.5%; }
+table														{ font-size:100%; }
+
+/*- Zakladni vlastnosti -*/
+a															{ color:#0000CC; }
+a:hover														{ color:#CC0000; }
+a:visited													{ color:#000099; }
+img															{ border:0; }
+
+/*- Obecné classy -*/
+.cleaner, .clear											{ clear:both; height:1px; font-size:1px; visibility:hidden; overflow:hidden; }
+.hide, .blind												{ position:absolute; left:-1000px; top:-1000px; width:1px; height:1px; overflow:hidden; }
+.nodisplay													{ display:none; }
+.bold														{ font-weight:bold; }
+.leftalign													{ text-align:left; }
+.rightalign													{ text-align:right; }
+.centeralign												{ text-align:center; }
+
+p															{ margin:50px auto; text-align:center; }
+
+/*- Vyskakovací okna -*/
+.window-content												{ background:#FFF; }
+.PopUpMain													{ position:absolute !important; padding:0; margin:0; display:none; visibility:hidden; z-index:10; }
+.PopUpBg													{ opacity:0.6; filter:alpha(opacity=60); position:fixed; _position:absolute; top:0; left:0; width:100%; height:100%; background:#000; display:none; visibility:hidden; zoom:1; z-index:8; }
+.PopUpClose													{ position:absolute; top:-10px; right:0; color:#CCCCCC; font-weight:bold; font-size:139.5%; }
+.displaynopopup												{ display:none; }
+.popup h4													{ font-size:108.5%; color:#25375D; }
+.popup h5													{ font-size:100%; text-decoration:underline; }
+.popup p													{ margin:0 0; }
+.popup .p350 input[type=text]								{ width:340px; }
+.popup .p350 select											{ width:350px; }
+.popup button												{ margin-right:7px; height:23px; color:#4F5660; padding:0 4px; border:1px solid #C7C7C7; background:url(/img/input-bg.png) repeat-x; font-weight:bold; }

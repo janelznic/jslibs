@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" href="css/screen.css?1" type="text/css" media="screen" />
+	<script type="text/javascript" src="js/jak.js"></script>
+	<script type="text/javascript" src="js/interpolator.js"></script>
+	<script type="text/javascript" src="js/window.js"></script>
+	<script type="text/javascript" src="js/popup.js"></script>
+	<title>JAK - Pop up window</title>
+</head>
+
+<body>
+	<div id="container">
+		<p><a href="#" id="popupButton">Otevři okno</a></p>
+
+		<script type="text/javascript">
+			var popup = new Popup({
+				callElm: "popupButton",
+				imgPath: "./img/",
+				popUpContent: {
+					title: "Otázka",
+					text: "Přejete si stránku přesměrovat?",
+					buttons: [
+						{ title: "Ano", callback: function(){ window.location.href="http://janelznic.cz"; } },
+						{ title: "Ne", closeOnClick: true }
+					]
+				}
+			});
+		</script>
+
+		<p>Autor: <a href="http://www.janelznic.cz">Jan Elznic</a>.<br />
+		Šířeno pod <a href="http://cs.wikipedia.org/wiki/Licence_MIT">MIT licencí</a> jako opensource.<br />
+		Pochází z <a href="https://github.com/janelznic/jslibs">https://github.com/janelznic/jslibs</a>.<br />
+		Postaveno na knihovně <a href="https://github.com/seznam/JAK/">JAK</a>.</p>
+	</div>
+</body>
+
+</html>
