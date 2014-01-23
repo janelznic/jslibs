@@ -1,6 +1,6 @@
 Popup = JAK.ClassMaker.makeClass({
 	NAME : "Popup",
-	VERSION : "2.2"
+	VERSION : "2.3.1"
 });
 
 /**
@@ -63,8 +63,12 @@ Popup.prototype.$constructor = function(opt) {
 			break;
 		case "object":
 			this.dom.callElm = [];
-			for (var i=0, j=this.opt.callElm.length; i<j; i++) {
-				this.dom.callElm.push(JAK.gel(this.opt.callElm[i]));
+			if (this.opt.callElm > 1) {
+				for (var i=0, j=this.opt.callElm.length; i<j; i++) {
+					this.dom.callElm.push(JAK.gel(this.opt.callElm[i]));
+				}
+			} else {
+				this.dom.callElm.push(this.opt.callElm);
 			}
 			break;
 		default:
@@ -89,6 +93,7 @@ Popup.prototype._getContent = function() {
 			winCont.appendChild(JAK.mel("p", { innerHTML: this.opt.popUpContent.text }));
 
 			var buttons = this.opt.popUpContent.buttons;
+
 			for (var i=0, j=buttons.length, button, callback, className, type; i < j; i++) {
 				button = JAK.mel("button");
 
@@ -175,7 +180,7 @@ Popup.prototype._center = function() {
  **/
 Popup.prototype.open = function(e, elm) {
 	this.isOpen = true;
-	JAK.Events.cancelDef(e);
+	if (e) JAK.Events.cancelDef(e);
 	this.dom.bg.style.display = "block";
 	this.dom.bg.style.visibility = "visible";
 	JAK.DOM.clear(this.dom.content);
@@ -258,14 +263,18 @@ Popup.prototype._addListeners = function() {
 	if (this.dom.callElm.length > 0) {
 		for (var i=0, j=this.dom.callElm.length, callElm; i<j; i++) {
 			callElm = this.dom.callElm[i];
-			if (callElm) this.ec.push(JAK.Events.addListener(callElm, "click", this, "open"));
+			if (callElm) {
+				this.ec.push(JAK.Events.addListener(
+					typeof(callElm[0]) == "string" ?  JAK.gel(callElm[0]) : callElm, "click", this, "open")
+				);
+			}
 		}
 	} else {
 		this.ec.push(JAK.Events.addListener(this.dom.callElm, "click", this, "open"));
 	}
 
 	/* Otevření bubliny na onload stránky */
-	if (this.opt.openOnRefresh == 1) {
+	if (this.opt.openOnRefresh) {
 		this.ec.push(JAK.Events.addListener(window, "load", this, "open"));
 	}
 
